@@ -36,7 +36,7 @@
 
     下一个读或写的位置，它永远不可能为负数，并且不会大于limit
 
-![java_nio](java_nio.png)
+![java_nio](assets/java_nio.png)
 
 Java 原生6中基本类型都各自有对应都buffer类型（除了boolean外），如
 
