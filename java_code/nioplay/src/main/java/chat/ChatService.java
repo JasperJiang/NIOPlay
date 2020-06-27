@@ -59,7 +59,7 @@ public class ChatService {
         int count=0;
         long start=System.nanoTime();
         while (true){
-            //如果不设置timeout就阻塞了
+            //等待timeout时间后检查一次并且继续执行，阻塞timeout时间。如果不设置timeout就完全阻塞了
             int select = selector.select(timeout);
             System.out.println("轮询结果：" + select);
             // 为了解决JDK空轮询的bug  Start
@@ -74,6 +74,7 @@ public class ChatService {
                 System.out.println("有可能发生空轮询"+count+"次");
                 rebuildSelector();
                 count=0;
+                //马上检查selector并且完全不阻塞
                 selector.selectNow();
                 continue;
             }
