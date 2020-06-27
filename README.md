@@ -1,5 +1,7 @@
 # NIO
 
+差别最大的是服务器端
+
 ## 同步/异步/阻塞/非阻塞
 
 - 同步
@@ -50,7 +52,21 @@ Java 原生6中基本类型都各自有对应都buffer类型（除了boolean外�
 
 - ShortBuffer
 
+HeapByteBuffer 堆内
+
+    底层实现直接byte数组
+
+DirectByteBuffer 堆外
+
+    address成员变量，引用堆外内存。如果写到外面，DirectByteBuffer性能会更好，因为堆内内存还有拷贝的步骤。
+
 ## Selector
+
+    轮询器，将Channel注册到Selector内。
+
+    key set 表示注册到selector上面所有到selectionKey，通过keys()方法返回 全集
+
+    selected-key set 表示感兴趣到selectionKey  通过selectedKeys()方法返回  子集， 只会返回发送了事件的感兴趣的事件
 
 ## Channel
 
