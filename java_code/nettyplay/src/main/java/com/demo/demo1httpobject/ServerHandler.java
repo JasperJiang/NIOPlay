@@ -18,6 +18,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<HttpObject> {
             fullHttpResponse.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
             fullHttpResponse.headers().set(HttpHeaderNames.CONTENT_LENGTH,byteBuf.readableBytes());
             channelHandlerContext.writeAndFlush(fullHttpResponse);
+            //向下传播
+            channelHandlerContext.fireChannelRead(httpObject);
         }
 
     }

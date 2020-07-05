@@ -10,6 +10,8 @@ public class TestServerHandler extends SimpleChannelInboundHandler<String>{
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
         System.out.println(channelHandlerContext.channel().remoteAddress()+","+s);
         channelHandlerContext.writeAndFlush("form server"+ UUID.randomUUID() + "\n\r");
+        //向下传播
+        channelHandlerContext.fireChannelRead(s);
     }
 
     @Override

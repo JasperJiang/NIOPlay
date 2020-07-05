@@ -10,6 +10,8 @@ public class TestClientHandler extends SimpleChannelInboundHandler<String> {
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
         System.out.println(channelHandlerContext.channel().remoteAddress()+",client output"+s);
 //        channelHandlerContext.writeAndFlush("form client"+ LocalDateTime.now());
+        //向下传播
+        channelHandlerContext.fireChannelRead(s);
     }
 
 
